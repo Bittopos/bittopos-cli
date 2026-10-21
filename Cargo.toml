@@ -1,0 +1,15 @@
+[package]
+name = "bitto-cli"
+version = "0.1.0"
+edition = "2021"
+description = "Interfaz de terminal de Bittopos"
+license = "MPL-2.0"
+
+[[bin]]
+name = "bitto"
+path = "src/main.rs"
+
+[dependencies]
+bittopos-core = { git = "https://github.com/jasperalsain/bittopos-core", rev = "cd6483acda746858cfaffc45f52c5df1f1c4a940" }
+clap = { version = "4", features = ["derive"] }
+uuid = "1"
