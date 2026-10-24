@@ -1,5 +1,5 @@
 [package]
-name = "bitto-cli"
+name = "btto-cli"
 version = "0.1.0"
 edition = "2021"
 description = "Interfaz de terminal de Bittopos"
