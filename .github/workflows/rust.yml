@@ -1,18 +1,44 @@
 name: Rust checks
+
 on:
   push:
     branches: ["**"]
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
   rust:
-    runs-on: ubuntu-latest
+    name: Rust on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+
     steps:
       - uses: actions/checkout@v4
+
       - uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt
+
+      - name: Install SQLite development library (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes libsqlite3-dev
+
+      - name: Install SQLite development library (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $root = if ($env:VCPKG_INSTALLATION_ROOT) { $env:VCPKG_INSTALLATION_ROOT } else { "C:\vcpkg" }
+          & "$root\vcpkg.exe" install sqlite3:x64-windows
+          "LIB=$root\installed\x64-windows\lib;$env:LIB" | Out-File -FilePath $env:GITHUB_ENV -Append
+          "INCLUDE=$root\installed\x64-windows\include;$env:INCLUDE" | Out-File -FilePath $env:GITHUB_ENV -Append
+
       - run: cargo fmt --all -- --check
       - run: cargo build
       - run: cargo test
