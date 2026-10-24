@@ -6,7 +6,7 @@ description = "Interfaz de terminal de Bittopos"
 license = "MPL-2.0"
 
 [[bin]]
-name = "bitto"
+name = "btto"
 path = "src/main.rs"
 
 [dependencies]
