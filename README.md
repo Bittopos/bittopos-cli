@@ -1,6 +1,6 @@
 # Bittopos CLI
 
-The `btto` command-line interface for local Bittopos workspaces.
+The Bittopos Terminal Only `btto` for local Bittopos workspaces.
 
 ## Build and test
 
