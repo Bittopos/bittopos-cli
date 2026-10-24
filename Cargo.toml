@@ -10,6 +10,6 @@ name = "btto"
 path = "src/main.rs"
 
 [dependencies]
-bittopos-core = { git = "https://github.com/jasperalsain/bittopos-core", rev = "cd6483acda746858cfaffc45f52c5df1f1c4a940" }
+bittopos-core = { git = "https://github.com/jasperalsain/bittopos-core", rev = "dd96b6d30014d029086256c5070818f4782456e3" }
 clap = { version = "4", features = ["derive"] }
 uuid = "1"
